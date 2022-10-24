@@ -6,6 +6,7 @@ import { AuthContextProvider } from "./Authcontext/Authcontext";
 import { Route, Routes } from "react-router-dom";
 import Info from "./pages/Info/Info";
 import CreateItem from "./pages/createitem/CreateItem";
+import Protected from "./components/Protected";
 
 function App() {
   return (
