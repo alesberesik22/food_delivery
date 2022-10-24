@@ -11,6 +11,7 @@ body {
   --primary-color: orange;
   --background-color: #d9d9d9;
   --border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  --border-bottom-focus: 2px solid orangered;
   --primary-transition: all 250ms ease-in-out;
 }
 * {

@@ -10,6 +10,7 @@ import { UserAuth } from "../Authcontext/Authcontext";
 import { UserValue } from "../context/StateProvider";
 
 const Header = () => {
+  const [show, setShow] = useState(false);
   const [user, dispatch] = UserValue();
   const [menu, setMenu] = useState(false);
   const { googleSignIn, logout } = UserAuth();
@@ -33,8 +34,20 @@ const Header = () => {
   useEffect(() => {
     console.log(user);
   }, [user]);
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 100) {
+        setShow(true);
+      } else {
+        setShow(false);
+      }
+    });
+    return () => {
+      //   window.removeEventListener("scroll");
+    };
+  }, []);
   return (
-    <header className="header">
+    <header className={`header ${show && " scroll"}`}>
       <Link to={"/"} className="header_logo">
         <img src={logo} alt="logo" />
         <p className="header_logo_text">Food Delivery</p>

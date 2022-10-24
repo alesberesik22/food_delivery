@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import { AuthContextProvider } from "./Authcontext/Authcontext";
 import { Route, Routes } from "react-router-dom";
 import Info from "./pages/Info/Info";
+import CreateItem from "./pages/createitem/CreateItem";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Info />} />
+            <Route path="/createitem" element={<CreateItem />} />
           </Routes>
         </div>
       </AuthContextProvider>
