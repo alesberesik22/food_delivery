@@ -17,12 +17,10 @@ export const AuthContextProvider = ({ children }) => {
   const googleSignIn = async () => {
     const provider = new GoogleAuthProvider();
     const { user } = await signInWithPopup(auth, provider);
-    console.log(user.providerData[0]);
     dispatch({
       type: actionType.SET_USER,
       user: user.providerData[0],
     });
-    console.log(user);
   };
   const logout = () => {
     signOut(auth);
