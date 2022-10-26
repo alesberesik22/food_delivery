@@ -6,6 +6,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { StateProvider } from "./context/StateProvider";
 import { InitialState } from "./context/InitialState";
 import reducer from "./context/Reducer";
+import { AuthContextProvider } from "./Authcontext/Authcontext";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -13,7 +14,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <Router>
     <StateProvider initialState={InitialState} reducer={reducer}>
-      <App />
+      <AuthContextProvider>
+        <App />
+      </AuthContextProvider>
     </StateProvider>
   </Router>
 );

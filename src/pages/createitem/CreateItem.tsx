@@ -7,8 +7,10 @@ import { UserValue } from "../../context/StateProvider";
 import UploadImage from "./imageupload/UploadImage";
 import ShowImage from "./showimage/ShowImage";
 import Message from "../../components/Message";
+import { UserAuth } from "../../Authcontext/Authcontext";
 
 const CreateItem = () => {
+  const { saveItem } = UserAuth();
   const [title, setTitle] = useState("");
   const [user] = UserValue();
   const [category, setCategory] = useState("");
@@ -20,6 +22,36 @@ const CreateItem = () => {
     setLoading(true);
     // const imageFile = e.target.files[0];
     console.log(imageAsset);
+    try {
+      if (!title || !calories || !category || !price || !imageAsset) {
+        console.log("fields can not be empty");
+        setLoading(false);
+      } else {
+        console.log("som tu");
+        const data = {
+          id: `${Date.now()}`,
+          title: title,
+          imageURL: imageAsset,
+          category: category,
+          calories: calories,
+          qty: 1,
+          price: price,
+        };
+        saveItem(data).then();
+        clearData();
+        setLoading(false);
+      }
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
+  const clearData = () => {
+    setTitle("");
+    setImageAsset(null);
+    setCategory("");
+    setCalories("");
+    setPrice("");
   };
   return (
     <div className="create_item">

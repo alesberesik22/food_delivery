@@ -5,14 +5,23 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
-import { auth } from "../config/firebase";
+import { auth, db } from "../config/firebase";
 import { UserValue } from "../context/StateProvider";
 import { actionType } from "../context/Reducer";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  orderBy,
+  query,
+  setDoc,
+} from "firebase/firestore";
 
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
-  const [{ user }, dispatch] = UserValue();
+  const [{ user, foodItems }, dispatch] = UserValue();
   const [user2, setUser2] = useState({});
   const googleSignIn = async () => {
     const provider = new GoogleAuthProvider();
@@ -29,6 +38,28 @@ export const AuthContextProvider = ({ children }) => {
       user: null,
     });
   };
+  const saveItem = async (data) => {
+    await setDoc(doc(db, "foodItems", `${data.title}`), data, {
+      merge: true,
+    });
+  };
+  const getAllItems = async () => {
+    // const items = await getDocs(
+    //   collection(db, "foodItems"),
+    //   orderBy("id", "desc")
+    // );
+    // return items.docs.map((doc) => doc.data());
+    const q = query(collection(db, "foodItems"));
+    const querySnapshot = await getDocs(
+      collection(db, "foodItems"),
+      orderBy("id", "desc")
+    );
+    // querySnapshot.forEach((doc) => {
+    //   // doc.data() is never undefined for query doc snapshots
+    //   console.log(doc.data());
+    // });
+    return querySnapshot.docs.map((doc) => doc.data());
+  };
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currUser) => {
       setUser2(currUser);
@@ -43,7 +74,9 @@ export const AuthContextProvider = ({ children }) => {
     };
   }, []);
   return (
-    <AuthContext.Provider value={{ googleSignIn, user2, logout }}>
+    <AuthContext.Provider
+      value={{ googleSignIn, user2, logout, saveItem, getAllItems }}
+    >
       {children}
     </AuthContext.Provider>
   );
