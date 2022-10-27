@@ -6,8 +6,8 @@ import { favoriteItems } from "./favorites";
 
 const Info = () => {
   return (
-    <div className="main">
-      <section className="info_container">
+    <section className="main">
+      <div className="info_container">
         <div className="info_container_left">
           <p className="heading">
             Delivery in whole Country <img src={delivery} alt="delivery" />
@@ -45,8 +45,8 @@ const Info = () => {
             ))}
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 };
 

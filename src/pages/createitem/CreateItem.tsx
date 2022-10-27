@@ -8,11 +8,12 @@ import UploadImage from "./imageupload/UploadImage";
 import ShowImage from "./showimage/ShowImage";
 import Message from "../../components/Message";
 import { UserAuth } from "../../Authcontext/Authcontext";
+import { actionType } from "../../context/Reducer";
 
 const CreateItem = () => {
-  const { saveItem } = UserAuth();
+  const [{ foodItems }, dispatch] = UserValue();
+  const { saveItem, getAllItems } = UserAuth();
   const [title, setTitle] = useState("");
-  const [user] = UserValue();
   const [category, setCategory] = useState("");
   const [calories, setCalories] = useState("");
   const [price, setPrice] = useState("");
@@ -45,6 +46,7 @@ const CreateItem = () => {
       console.log(error);
       setLoading(false);
     }
+    fetchData();
   };
   const clearData = () => {
     setTitle("");
@@ -52,6 +54,15 @@ const CreateItem = () => {
     setCategory("");
     setCalories("");
     setPrice("");
+  };
+  const fetchData = async () => {
+    await getAllItems().then((data: any) => {
+      console.log(data);
+      dispatch({
+        type: actionType.SET_FOOD_ITEMS,
+        foodItems: data,
+      });
+    });
   };
   return (
     <div className="create_item">

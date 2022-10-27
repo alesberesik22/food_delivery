@@ -1,0 +1,70 @@
+.fruits_container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 4rem 6rem;
+  .fruits_header {
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    .fruits_header_text {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      p {
+        position: relative;
+        font-size: 25px;
+        font-weight: bold;
+        letter-spacing: 0.05em;
+        line-height: 50px;
+        &::before {
+          position: absolute;
+          bottom: 0;
+          content: "";
+          height: 4px;
+          width: 50%;
+          background: orangered;
+          border-bottom-right-radius: 7px;
+          border-top-right-radius: 7px;
+          transition: var(--primary-transition);
+        }
+        &:hover::before {
+          width: 100%;
+        }
+      }
+    }
+    .fruits_header_scroll {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: row;
+      gap: 10px;
+      .fruits_header_scroll_left,
+      .fruits_header_scroll_right {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 7px;
+        background: rgba(255, 68, 0, 0.568);
+        cursor: pointer;
+        transition: 0.2s all;
+        &:hover {
+          background: orangered;
+        }
+        .arrow {
+          height: 80%;
+          width: 80%;
+          transition: 0.2s all;
+        }
+      }
+    }
+  }
+}

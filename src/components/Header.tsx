@@ -82,18 +82,18 @@ const Header = () => {
               className="avatar_dropdown"
             >
               {user && user?.user?.email === "beresik.ales@gmail.com" ? (
-                <p>
+                <a href="/createitem">
                   New item <MdAdd style={{ color: "black" }} />
-                </p>
+                </a>
               ) : null}
               {user && user.user !== null ? (
-                <p onClick={handleLogout}>
+                <a onClick={handleLogout}>
                   Logout <MdLogout />
-                </p>
+                </a>
               ) : (
-                <p onClick={handleSignIn}>
+                <a onClick={handleSignIn}>
                   Login <MdLogin />
-                </p>
+                </a>
               )}
             </motion.div>
           )}

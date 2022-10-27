@@ -4,11 +4,11 @@ import { AnimatePresence } from "framer-motion";
 import Header from "./components/Header";
 import { AuthContextProvider, UserAuth } from "./Authcontext/Authcontext";
 import { Route, Routes } from "react-router-dom";
-import Info from "./pages/Info/Info";
 import CreateItem from "./pages/createitem/CreateItem";
 import Protected from "./components/Protected";
 import { UserValue } from "./context/StateProvider";
 import { actionType } from "./context/Reducer";
+import MainPage from "./pages/mainpage/MainPage";
 
 function App() {
   const { getAllItems } = UserAuth();
@@ -31,7 +31,7 @@ function App() {
       <div className="App">
         <Header />
         <Routes>
-          <Route path="/" element={<Info />} />
+          <Route path="/" element={<MainPage />} />
           <Route path="/createitem" element={<CreateItem />} />
         </Routes>
       </div>
