@@ -1,9 +1,101 @@
 .fruits_row_container {
   width: 100%;
-  height: 3rem;
+  height: 300px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
   color: black;
+  overflow-x: scroll;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: 7px;
+  gap: 40px;
+  .fruit_row_item {
+    min-width: 350px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.27);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+    border: 1px solid rgba(255, 255, 255, 0.23);
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 30px;
+    transition: var(--primary-transition);
+    &:hover {
+      scale: 1.05;
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+        rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    }
+    .fruit_row_item_img {
+      align-self: flex-start;
+      display: flex;
+      align-items: flex-start;
+      width: 50%;
+      height: 70%;
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+        transition: var(--primary-transition);
+        &:hover {
+          scale: 1.15;
+        }
+      }
+    }
+    .fruit_row_item_description {
+      padding: 2rem 10px 2rem 10px;
+      width: 50%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: column;
+      .fruit_row_item_description_buy {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: orangered;
+        transition: 0.2s all;
+        &:hover {
+          scale: 1.2;
+        }
+      }
+      .fruit_row_item_description_text {
+        width: 100%;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        flex-direction: column;
+        gap: 10px;
+        h5 {
+          font-size: 18px;
+          font-weight: 700;
+          letter-spacing: 0.07em;
+          color: rgb(51, 51, 51);
+        }
+        .fruit_row_item_description_text_calories {
+          font-size: 14px;
+          font-weight: 500;
+          letter-spacing: 0.07em;
+          color: grey;
+        }
+        .fruit_row_item_description_text_price {
+          text-align: center;
+          color: black;
+          font-size: 16px;
+          font-weight: 700;
+          letter-spacing: 0.07em;
+        }
+      }
+    }
+  }
+}
+.fruits_row_container::-webkit-scrollbar {
+  display: none;
 }

@@ -22,13 +22,11 @@ const CreateItem = () => {
   const saveDetails = (e: any) => {
     setLoading(true);
     // const imageFile = e.target.files[0];
-    console.log(imageAsset);
     try {
       if (!title || !calories || !category || !price || !imageAsset) {
         console.log("fields can not be empty");
         setLoading(false);
       } else {
-        console.log("som tu");
         const data = {
           id: `${Date.now()}`,
           title: title,
@@ -57,7 +55,6 @@ const CreateItem = () => {
   };
   const fetchData = async () => {
     await getAllItems().then((data: any) => {
-      console.log(data);
       dispatch({
         type: actionType.SET_FOOD_ITEMS,
         foodItems: data,
