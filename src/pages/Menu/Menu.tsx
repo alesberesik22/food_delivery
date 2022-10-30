@@ -18,20 +18,22 @@ const Menu = () => {
       if (category === "All") {
         setItems(foodItems);
       } else {
+        console.log("som v else");
         setItems(
           foodItems.filter((itemCategory: any) => {
-            itemCategory.category.includes(category.toLowerCase());
+            return String(itemCategory.category) === category.toLowerCase();
           })
         );
+        const filtered = items.filter((item: any) => {
+          return String(item.category) === category.toLowerCase();
+        });
+        console.log("filter", filtered);
       }
     }, 500);
   };
   useEffect(() => {
     setItems(foodItems);
   }, [foodItems]);
-  useEffect(() => {
-    console.log(items);
-  }, [items]);
   return (
     <section className="menu">
       <div className="menu_header">
@@ -57,7 +59,7 @@ const Menu = () => {
           )
         )}
       </div>
-      <Menucontainer />
+      <Menucontainer data={items} animation={animateCard} />
     </section>
   );
 };
